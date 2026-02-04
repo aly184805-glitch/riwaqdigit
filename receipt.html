@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>إيصال الدفع</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  background:#020617;
+  color:#fff;
+  font-family:Arial;
+  padding:20px;
+}
+.box{
+  max-width:420px;
+  margin:auto;
+  background:#0f172a;
+  padding:20px;
+  border-radius:16px;
+}
+a{
+  display:block;
+  background:#22c55e;
+  color:#000;
+  padding:12px;
+  text-align:center;
+  border-radius:12px;
+  text-decoration:none;
+  margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>✅ تم الدفع بنجاح</h2>
+  <p>رقم الطلب: <span id="order"></span></p>
+  <p>التاريخ: <span id="date"></span></p>
+  <a id="download">⬇️ تحميل المنتج</a>
+</div>
+
+<script>
+const token = new URLSearchParams(location.search).get("token");
+const savedToken = localStorage.getItem("token");
+const file = localStorage.getItem("file");
+
+if(token !== savedToken || !file){
+  document.body.innerHTML = "<h2>❌ غير مصرح</h2>";
+}
+
+document.getElementById("order").innerText =
+  "ORD-" + Math.random().toString(36).substring(2,8).toUpperCase();
+
+document.getElementById("date").innerText =
+  new Date().toLocaleString("ar");
+
+document.getElementById("download").href = file;
+</script>
+
+</body>
+    </html>
